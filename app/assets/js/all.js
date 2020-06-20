@@ -7,17 +7,11 @@ let cleanTask = document.querySelector('#cleanTask');
 /* 資料先定義出來 */
 let arrayTask = [
   {
-    title: `資料先定義出來`
-  },
-  {
-    title: `資料與渲染畫面分開`
-  },
-  {
     title: `渲染畫面`
   }
 ];
 
-/* 加入資料到 arrayTask */
+/* click 加入資料到 arrayTask */
 const addTaskFn = () => {
   let addTask = {
     title: ``
@@ -25,6 +19,23 @@ const addTaskFn = () => {
   if (inputTask.value === ``) {
     alert(`還沒輸入任務喔 !`);
   } else {
+    addTask.title = inputTask.value;
+    arrayTask.push(addTask);
+    inputTask.value = ``;
+
+    // 執行 渲染畫面 Fn
+    updateTaskFn();
+  }
+}
+
+/* keydown 加入資料到 arrayTask */
+const addTaskBtn =(event) =>{
+  let addTask = {
+    title: ``
+  };
+  if(event.keyCode === 13 && inputTask.value === ``){
+    alert(`還沒輸入任務喔 !`); 
+  } else if(event.keyCode === 13 ){
     addTask.title = inputTask.value;
     arrayTask.push(addTask);
     inputTask.value = ``;
@@ -48,6 +59,7 @@ const delTaskFn = (event) => {
   console.log(event.target.dataset.index);
 }
 
+/* 清空任務  */
 const cleanTaskFn = () => {
   arrayTask = [];
   updateTaskFn();
@@ -61,10 +73,10 @@ const updateTaskFn = () => {
     liTask += `
     <li class="list-group-item d-flex justify-content-between align-items-center">
       <div class="form-check pl-0">
-        <input type="checkbox" id="listItem${index}">
-        <label for="listItem${index}" class="mb-0">${item.title}</label>
+        <input type="checkbox" id="listItem${index}" class="checkbox">
+        <label for="listItem${index}" class="checkbox__label mb-0">${item.title}</label>
       </div>
-      <button type="button" class="close d-flex" data-dismiss="modal" aria-label="Close">
+      <button type="button" class="close d-flex" aria-label="delete">
           <span aria-hidden="true" data-index="${index}">&times;</span>
       </button>
     </li>
@@ -89,5 +101,6 @@ const updateTaskFn = () => {
 
 
 
+inputTask.addEventListener('keydown', addTaskBtn);
 submitBtn.addEventListener('click', addTaskFn);
 cleanTask.addEventListener('click', cleanTaskFn);
