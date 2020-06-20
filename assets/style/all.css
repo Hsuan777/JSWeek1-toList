@@ -7855,4 +7855,30 @@ h1, h2, h3, h4 {
 th, td {
   text-align: center; }
 
+.checkbox {
+  display: none; }
+  .checkbox__label {
+    cursor: pointer;
+    font-size: 18px; }
+    .checkbox__label::before {
+      content: "\2714";
+      border: 2px solid grey;
+      border-radius: 10%;
+      display: inline-block;
+      font-size: 16px;
+      width: 24px;
+      height: 8px;
+      -webkit-transform: translateY(3px);
+          -ms-transform: translateY(3px);
+              transform: translateY(3px);
+      padding: 0px 0 20px 4px;
+      margin-right: 8px;
+      color: transparent; }
+  .checkbox:checked + .checkbox__label {
+    text-decoration: line-through; }
+    .checkbox:checked + .checkbox__label::before {
+      border: 2px solid #6C51E2;
+      background-color: #6C51E2;
+      color: white; }
+
 /*# sourceMappingURL=all.css.map */

@@ -8,13 +8,9 @@ var cleanTask = document.querySelector('#cleanTask');
 /* 資料先定義出來 */
 
 var arrayTask = [{
-  title: "\u8CC7\u6599\u5148\u5B9A\u7FA9\u51FA\u4F86"
-}, {
-  title: "\u8CC7\u6599\u8207\u6E32\u67D3\u756B\u9762\u5206\u958B"
-}, {
   title: "\u6E32\u67D3\u756B\u9762"
 }];
-/* 加入資料到 arrayTask */
+/* click 加入資料到 arrayTask */
 
 var addTaskFn = function addTaskFn() {
   var addTask = {
@@ -24,6 +20,24 @@ var addTaskFn = function addTaskFn() {
   if (inputTask.value === "") {
     alert("\u9084\u6C92\u8F38\u5165\u4EFB\u52D9\u5594 !");
   } else {
+    addTask.title = inputTask.value;
+    arrayTask.push(addTask);
+    inputTask.value = ""; // 執行 渲染畫面 Fn
+
+    updateTaskFn();
+  }
+};
+/* keydown 加入資料到 arrayTask */
+
+
+var addTaskBtn = function addTaskBtn(event) {
+  var addTask = {
+    title: ""
+  };
+
+  if (event.keyCode === 13 && inputTask.value === "") {
+    alert("\u9084\u6C92\u8F38\u5165\u4EFB\u52D9\u5594 !");
+  } else if (event.keyCode === 13) {
     addTask.title = inputTask.value;
     arrayTask.push(addTask);
     inputTask.value = ""; // 執行 渲染畫面 Fn
@@ -44,6 +58,8 @@ var delTaskFn = function delTaskFn(event) {
   updateTaskFn();
   console.log(event.target.dataset.index);
 };
+/* 清空任務  */
+
 
 var cleanTaskFn = function cleanTaskFn() {
   arrayTask = [];
@@ -56,7 +72,7 @@ var updateTaskFn = function updateTaskFn() {
   // 撈出陣列資料組成 li字串
   var liTask = "";
   arrayTask.forEach(function (item, index) {
-    liTask += "\n    <li class=\"list-group-item d-flex justify-content-between align-items-center\">\n      <div class=\"form-check pl-0\">\n        <input type=\"checkbox\" id=\"listItem".concat(index, "\">\n        <label for=\"listItem").concat(index, "\" class=\"mb-0\">").concat(item.title, "</label>\n      </div>\n      <button type=\"button\" class=\"close d-flex\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\" data-index=\"").concat(index, "\">&times;</span>\n      </button>\n    </li>\n    ");
+    liTask += "\n    <li class=\"list-group-item d-flex justify-content-between align-items-center\">\n      <div class=\"form-check pl-0\">\n        <input type=\"checkbox\" id=\"listItem".concat(index, "\" class=\"checkbox\">\n        <label for=\"listItem").concat(index, "\" class=\"checkbox__label mb-0\">").concat(item.title, "</label>\n      </div>\n      <button type=\"button\" class=\"close d-flex\" aria-label=\"delete\">\n          <span aria-hidden=\"true\" data-index=\"").concat(index, "\">&times;</span>\n      </button>\n    </li>\n    ");
   }); // 更新 li資料
 
   toList.innerHTML = liTask; // 更新 刪除監聽事件
@@ -70,6 +86,7 @@ var updateTaskFn = function updateTaskFn() {
   console.log(arrayTask);
 };
 
+inputTask.addEventListener('keydown', addTaskBtn);
 submitBtn.addEventListener('click', addTaskFn);
 cleanTask.addEventListener('click', cleanTaskFn);
 //# sourceMappingURL=all.js.map

@@ -26,7 +26,7 @@
             <span class="input-group-text">ToList</span>
           </div>
           <!-- inputTask 任務欄位 -->
-          <input type="text" id="inputTask" class="form-control" placeholder="請輸入代辦事項~" aria-label="ToList">
+          <input type="text" id="inputTask" class="form-control" placeholder="請輸入待辦事項~" aria-label="ToList">
           <!-- add 按鈕 -->
           <div class="input-group-prepend">
             <button id="submitBtn" class="btn btn-outline-primary rounded-right">Add</button>
@@ -39,19 +39,19 @@
             <ul id="toList" class="list-group">
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 <div class="form-check pl-0">
-                  <input type="checkbox" id="listItem1">
-                  <label for="listItem1" class="mb-0">資料</label>
+                  <input type="checkbox" id="listItem1" class="checkbox">
+                  <label for="listItem1" class="checkbox__label mb-0">範例資料 : 資料先定義出來</label>
                 </div>
-                <button type="button" class="close d-flex" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close d-flex" aria-label="delete">
                   <span aria-hidden="true" >&times;</span>
                 </button>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 <div class="form-check pl-0">
-                  <input type="checkbox" id="listItem2">
-                  <label for="listItem2" class="mb-0">幫 li 加上 active</label>
+                  <input type="checkbox" id="listItem2" class="checkbox">
+                  <label for="listItem2" class="checkbox__label mb-0">範例資料 : 資料與渲染畫面分開</label>
                 </div>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" aria-label="delete">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </li>
@@ -59,7 +59,7 @@
           </div>
           <!-- 統計任務清單 -->
           <div class="card-footer border d-flex justify-content-between align-items-center">
-            <span id="numTask">共X筆任務</span>
+            <span id="numTask">共 2 筆任務</span>
             <button id="cleanTask" class="btn btn-link pr-0 ">清除所有任務</button>
           </div>
         </div>
