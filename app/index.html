@@ -8,40 +8,50 @@ current: index
   <div class="container mt-5">
     <div class="row">
       <div class="col-12 col-md-8 mx-auto">
+        <!-- 輸入任務欄位 -->
         <div class="input-group input-group-lg mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text">ToList</span>
           </div>
-          <input type="text" class="form-control" placeholder="請輸入代辦事項~" aria-label="ToList">
+          <!-- inputTask 任務欄位 -->
+          <input type="text" id="inputTask" class="form-control" placeholder="請輸入代辦事項~" aria-label="ToList">
+          <!-- add 按鈕 -->
           <div class="input-group-prepend">
-            <button class="btn btn-outline-primary rounded-right">Add</button>
+            <button id="submitBtn" class="btn btn-outline-primary rounded-right">Add</button>
           </div>
         </div>
 
-        <ul id="toList" class="list-group">
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div class="form-check pl-0">
-              <input type="checkbox" id="listItem1">
-              <label for="listItem1" class="mb-0">123</label>
-            </div>
-            <button type="button" class="close d-flex" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true" >&times;</span>
-            </button>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div class="form-check pl-0">
-              <input type="checkbox" id="listItem2">
-              <label for="listItem2" class="mb-0">123</label>
-            </div>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center p-2 bg-secondary font-weight-bold">
-            共 X 筆任務
-            <button class="btn btn-link pr-0 ">清除所有任務</button>
-          </li>
-        </ul>
+        <!-- 任務清單 -->
+        <div class="card border-0">
+          <div class="card-body p-0 border-0">
+            <ul id="toList" class="list-group">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div class="form-check pl-0">
+                  <input type="checkbox" id="listItem1">
+                  <label for="listItem1" class="mb-0">資料</label>
+                </div>
+                <button type="button" class="close d-flex" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true" >&times;</span>
+                </button>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div class="form-check pl-0">
+                  <input type="checkbox" id="listItem2">
+                  <label for="listItem2" class="mb-0">幫 li 加上 active</label>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </li>
+            </ul>
+          </div>
+          <!-- 統計任務清單 -->
+          <div class="card-footer border d-flex justify-content-between align-items-center">
+            <span id="numTask">共X筆任務</span>
+            <button id="cleanTask" class="btn btn-link pr-0 ">清除所有任務</button>
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>
