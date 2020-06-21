@@ -1,0 +1,20 @@
+.input{
+  &__danger{
+    color: map-get($theme-colors , danger );
+    &:focus{
+      color: map-get($theme-colors , danger );
+    }
+    &::placeholder{
+      color: map-get($theme-colors , danger );
+    }
+  }
+  &__warning{
+    color: map-get($theme-colors , warning );
+    &:focus{
+      color: map-get($theme-colors , warning );
+    }
+    &::placeholder{
+      color: map-get($theme-colors , warning );
+    }
+  }
+}
