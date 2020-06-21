@@ -7,7 +7,6 @@ let dropdownText = document.querySelector('.dropdown-toggle');
 let dropdownMenu = document.querySelector('.dropdown-menu');
 
 
-
 /* 資料先定義出來 */
 let arrayTask = [
   {
@@ -15,6 +14,7 @@ let arrayTask = [
     level: `text-warning`
   }
 ];
+
 
 /* click 加入資料到 arrayTask */
 const addTaskFn = () => {
@@ -40,7 +40,6 @@ const addTaskFn = () => {
 
     // 執行/更新 渲染畫面 Fn
     updateTaskFn();
-    console.log()
   }
 }
 
@@ -51,7 +50,7 @@ const addTaskBtn = (event) => {
   }
 }
 
-/* 刪除單筆任務 */
+/* 刪除單筆任務 Fn */
 const delTaskFn = (event) => {
   // 取得索引值，參數.對象.自定義資料.自定義資料-名稱
   let delIndex = event.target.dataset.index;
@@ -60,15 +59,17 @@ const delTaskFn = (event) => {
   arrayTask.splice(delIndex, 1);
   // 預計要刪除 li元素，但是重新執行渲染畫面去更新畫面後就不用了
 
-  // 執行 渲染畫面 Fn
+  // 執行/更新 渲染畫面 Fn
   updateTaskFn();
 }
 
-/* 清空任務  */
+/* 清空任務 Fn */
 const cleanTaskFn = () => {
   arrayTask = [];
   updateTaskFn();
 }
+
+
 
 /* 渲染畫面 Fn */
 const updateTaskFn = () => {
@@ -88,10 +89,10 @@ const updateTaskFn = () => {
     `
   });
 
-  // 更新 li資料
+  // 渲染 li資料至畫面
   toList.innerHTML = liTask;
 
-  // 更新 刪除監聽事件
+  // 更新/綁定 監聽事件 - 刪除單筆任務 Fn
   let delTask = document.querySelectorAll('.close');
   delTask.forEach(function (item) {
     item.addEventListener('click', delTaskFn);
@@ -99,7 +100,6 @@ const updateTaskFn = () => {
 
   // 更新 任務筆數
   numTask.textContent = `共 ${arrayTask.length} 筆任務`;
-  console.log(arrayTask);
 }
 
 /* 判斷文字並上色 */
@@ -123,10 +123,11 @@ const textFn = (event) => {
   }
 }
 
-
-
+// 加入任務
+dropdownMenu.addEventListener('click', textFn);
 inputTask.addEventListener('keydown', addTaskBtn);
 submitBtn.addEventListener('click', addTaskFn);
+
+// 清空任務
 cleanTask.addEventListener('click', cleanTaskFn);
 
-dropdownMenu.addEventListener('click', textFn);
