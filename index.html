@@ -23,7 +23,14 @@
         <!-- 輸入任務欄位 -->
         <div class="input-group input-group-lg mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text">ToList</span>
+            <!-- <span class="input-group-text">ToList</span> -->
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">普通</button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item text-danger" href="#">緊急</a>
+              <a class="dropdown-item text-warning" href="#">重要</a>
+              <a class="dropdown-item" href="#">普通</a>
+            </div>
           </div>
           <!-- inputTask 任務欄位 -->
           <input type="text" id="inputTask" class="form-control" placeholder="請輸入待辦事項~" aria-label="ToList">
@@ -37,13 +44,13 @@
         <div class="card border-0">
           <div class="card-body p-0 border-0">
             <ul id="toList" class="list-group">
-              <li class="list-group-item d-flex justify-content-between align-items-center">
+              <!-- <li class="list-group-item d-flex justify-content-between align-items-center">
                 <div class="form-check pl-0">
                   <input type="checkbox" id="listItem1" class="checkbox">
                   <label for="listItem1" class="checkbox__label mb-0">範例資料 : 資料先定義出來</label>
                 </div>
                 <button type="button" class="close d-flex" aria-label="delete">
-                  <span aria-hidden="true" >&times;</span>
+                  <span aria-hidden="true">&times;</span>
                 </button>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -54,16 +61,16 @@
                 <button type="button" class="close" aria-label="delete">
                   <span aria-hidden="true">&times;</span>
                 </button>
-              </li>
+              </li> -->
             </ul>
           </div>
           <!-- 統計任務清單 -->
           <div class="card-footer border d-flex justify-content-between align-items-center">
-            <span id="numTask">共 2 筆任務</span>
+            <span id="numTask">共 0 筆任務</span>
             <button id="cleanTask" class="btn btn-link pr-0 ">清除所有任務</button>
           </div>
         </div>
-        
+
       </div>
     </div>
   </div>

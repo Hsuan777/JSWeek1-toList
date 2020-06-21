@@ -5,44 +5,50 @@ var submitBtn = document.querySelector('#submitBtn');
 var toList = document.querySelector('#toList');
 var numTask = document.querySelector('#numTask');
 var cleanTask = document.querySelector('#cleanTask');
+var dropdownText = document.querySelector('.dropdown-toggle');
+var dropdownMenu = document.querySelector('.dropdown-menu');
 /* 資料先定義出來 */
 
 var arrayTask = [{
-  title: "\u6E32\u67D3\u756B\u9762"
+  title: "\u5168\u90E8\u5B8C\u6210\u7D66\u81EA\u5DF1\u9F13\u52F5\u5427! %%%%%",
+  level: "text-warning"
 }];
 /* click 加入資料到 arrayTask */
 
 var addTaskFn = function addTaskFn() {
   var addTask = {
-    title: ""
+    title: "",
+    level: ""
   };
 
   if (inputTask.value === "") {
     alert("\u9084\u6C92\u8F38\u5165\u4EFB\u52D9\u5594 !");
   } else {
     addTask.title = inputTask.value;
+
+    switch (dropdownText.textContent) {
+      case "\u7DCA\u6025":
+        addTask.level = "text-danger";
+        break;
+
+      case "\u91CD\u8981":
+        addTask.level = "text-warning";
+        break;
+    }
+
     arrayTask.push(addTask);
-    inputTask.value = ""; // 執行 渲染畫面 Fn
+    inputTask.value = ""; // 執行/更新 渲染畫面 Fn
 
     updateTaskFn();
+    console.log();
   }
 };
 /* keydown 加入資料到 arrayTask */
 
 
 var addTaskBtn = function addTaskBtn(event) {
-  var addTask = {
-    title: ""
-  };
-
-  if (event.keyCode === 13 && inputTask.value === "") {
-    alert("\u9084\u6C92\u8F38\u5165\u4EFB\u52D9\u5594 !");
-  } else if (event.keyCode === 13) {
-    addTask.title = inputTask.value;
-    arrayTask.push(addTask);
-    inputTask.value = ""; // 執行 渲染畫面 Fn
-
-    updateTaskFn();
+  if (event.keyCode === 13) {
+    addTaskFn();
   }
 };
 /* 刪除單筆任務 */
@@ -56,7 +62,6 @@ var delTaskFn = function delTaskFn(event) {
   // 執行 渲染畫面 Fn
 
   updateTaskFn();
-  console.log(event.target.dataset.index);
 };
 /* 清空任務  */
 
@@ -72,7 +77,7 @@ var updateTaskFn = function updateTaskFn() {
   // 撈出陣列資料組成 li字串
   var liTask = "";
   arrayTask.forEach(function (item, index) {
-    liTask += "\n    <li class=\"list-group-item d-flex justify-content-between align-items-center\">\n      <div class=\"form-check pl-0\">\n        <input type=\"checkbox\" id=\"listItem".concat(index, "\" class=\"checkbox\">\n        <label for=\"listItem").concat(index, "\" class=\"checkbox__label mb-0\">").concat(item.title, "</label>\n      </div>\n      <button type=\"button\" class=\"close d-flex\" aria-label=\"delete\">\n          <span aria-hidden=\"true\" data-index=\"").concat(index, "\">&times;</span>\n      </button>\n    </li>\n    ");
+    liTask += "\n    <li class=\"list-group-item d-flex justify-content-between align-items-center\">\n      <div class=\"form-check pl-0\">\n        <input type=\"checkbox\" id=\"listItem".concat(index, "\" class=\"checkbox\">\n        <label for=\"listItem").concat(index, "\" class=\"checkbox__label ").concat(item.level, " mb-0\">").concat(item.title, "</label>\n      </div>\n      <button type=\"button\" class=\"close d-flex\" aria-label=\"delete\">\n          <span aria-hidden=\"true\" data-index=\"").concat(index, "\">&times;</span>\n      </button>\n    </li>\n    ");
   }); // 更新 li資料
 
   toList.innerHTML = liTask; // 更新 刪除監聽事件
@@ -85,8 +90,34 @@ var updateTaskFn = function updateTaskFn() {
   numTask.textContent = "\u5171 ".concat(arrayTask.length, " \u7B46\u4EFB\u52D9");
   console.log(arrayTask);
 };
+/* 判斷文字並上色 */
+
+
+var textFn = function textFn(event) {
+  console.log(event.target.textContent);
+
+  switch (event.target.textContent) {
+    case "\u7DCA\u6025":
+      dropdownText.textContent = event.target.textContent;
+      inputTask.classList.add('input__danger');
+      inputTask.classList.remove('input__warning');
+      break;
+
+    case "\u91CD\u8981":
+      dropdownText.textContent = event.target.textContent;
+      inputTask.classList.add('input__warning');
+      inputTask.classList.remove('input__danger');
+      break;
+
+    case "\u666E\u901A":
+      dropdownText.textContent = event.target.textContent;
+      inputTask.classList.remove('input__warning', 'input__danger');
+      break;
+  }
+};
 
 inputTask.addEventListener('keydown', addTaskBtn);
 submitBtn.addEventListener('click', addTaskFn);
 cleanTask.addEventListener('click', cleanTaskFn);
+dropdownMenu.addEventListener('click', textFn);
 //# sourceMappingURL=all.js.map
